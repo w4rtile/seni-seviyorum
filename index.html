@@ -1,173 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aşkım ❤️</title>
+    <title>Sana Özel</title>
     <style>
-        * {
+        /* Genel sayfa ayarları */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 3em;
-            color: white;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .button-container {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .button {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: left 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Kenarlarda taşma olmasını engeller */
         }
 
-        .button:hover::before {
-            left: 100%;
+        /* Butonları yan yana tutan taşıyıcı */
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
         }
 
-        .button1 {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        /* Her iki butonun ortak özellikleri */
+        .btn {
+            flex: 1; /* Başlangıçta ekranı tam yarı yarıya paylaşırlar */
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            /* Büyüme ve küçülme animasyonunun yumuşaklığı */
+            transition: flex 0.8s ease, opacity 0.8s ease, font-size 0.8s ease; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            white-space: nowrap; /* Yazıların alt satıra kaymasını önler */
         }
 
-        .button1:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        /* Sol Butonun Rengi */
+        #btn1 {
+            background-color: #ff4d6d; /* Tatlı bir pembe/kırmızı */
         }
 
-        .button2 {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        /* Sağ Butonun Rengi */
+        #btn2 {
+            background-color: #c9184a; /* Daha koyu bir ton */
         }
 
-        .button2:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+        /* Ekranı kaplama animasyonu için eklenecek sınıf */
+        .fullscreen {
+            flex: 100 !important;
+            font-size: 4rem; /* Büyüyen butonun yazısı da büyür */
         }
 
-        .expanding {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            color: #764ba2;
-            padding: 12px 20px;
-            border-radius: 20px;
-            white-space: nowrap;
+        /* Tıklanan butonu gizlemek için eklenecek sınıf */
+        .hide {
+            flex: 0 !important;
             opacity: 0;
-            transform: translateX(-50%) translateY(10px);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .button-container:hover .expanding {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0px);
-        }
-
-        .heart {
-            display: inline-block;
-            animation: heartbeat 1.2s ease-in-out infinite;
-            margin: 0 5px;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.3);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .button-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .title {
-                font-size: 2em;
-            }
-
-            .button {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
+            padding: 0;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1 class="title"><span class="heart">❤️</span> Seni Seviyorum <span class="heart">❤️</span></h1>
-        <div class="button-grid">
-            <div class="button-container">
-                <button class="button button1">💕 Aşk</button>
-                <div class="expanding">Kalbim senin için çarpıyor!</div>
-            </div>
-            <div class="button-container">
-                <button class="button button2">💋 Öpüş</button>
-                <div class="expanding">Benim güzel yarımyoluma!</div>
-            </div>
-        </div>
+        <button id="btn1" class="btn">Bana Tıkla</button>
+        <button id="btn2" class="btn">Hayır, Bana Tıkla</button>
     </div>
+
+    <script>
+        // Butonları JavaScript ile seçiyoruz
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+
+        // 1. butona tıklandığında olacaklar:
+        btn1.addEventListener('click', () => {
+            // 2. buton büyüsün ve yazısı değişsin
+            btn2.classList.add('fullscreen');
+            btn2.innerHTML = "Sürpriiiiz! Seni Çok Seviyorum ❤️"; 
+            
+            // 1. buton kaybolsun
+            btn1.classList.add('hide');
+        });
+
+        // 2. butona tıklandığında olacaklar:
+        btn2.addEventListener('click', () => {
+            // 1. buton büyüsün ve yazısı değişsin
+            btn1.classList.add('fullscreen');
+            btn1.innerHTML = "Sürpriiiiz! İyi ki Varsın 💕"; 
+            
+            // 2. buton kaybolsun
+            btn2.classList.add('hide');
+        });
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Özel</title>
+    <style>
+        /* Genel sayfa ayarları */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Kenarlarda taşma olmasını engeller */
+        }
+
+        /* Butonları yan yana tutan taşıyıcı */
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Her iki butonun ortak özellikleri */
+        .btn {
+            flex: 1; /* Başlangıçta ekranı tam yarı yarıya paylaşırlar */
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            /* Büyüme ve küçülme animasyonunun yumuşaklığı */
+            transition: flex 0.8s ease, opacity 0.8s ease, font-size 0.8s ease; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            white-space: nowrap; /* Yazıların alt satıra kaymasını önler */
+        }
+
+        /* Sol Butonun Rengi */
+        #btn1 {
+            background-color: #ff4d6d; /* Tatlı bir pembe/kırmızı */
+        }
+
+        /* Sağ Butonun Rengi */
+        #btn2 {
+            background-color: #c9184a; /* Daha koyu bir ton */
+        }
+
+        /* Ekranı kaplama animasyonu için eklenecek sınıf */
+        .fullscreen {
+            flex: 100 !important;
+            font-size: 4rem; /* Büyüyen butonun yazısı da büyür */
+        }
+
+        /* Tıklanan butonu gizlemek için eklenecek sınıf */
+        .hide {
+            flex: 0 !important;
+            opacity: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="btn1" class="btn">Bana Tıkla</button>
+        <button id="btn2" class="btn">Hayır, Bana Tıkla</button>
+    </div>
+
+    <script>
+        // Butonları JavaScript ile seçiyoruz
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+
+        // 1. butona tıklandığında olacaklar:
+        btn1.addEventListener('click', () => {
+            // 2. buton büyüsün ve yazısı değişsin
+            btn2.classList.add('fullscreen');
+            btn2.innerHTML = "Sürpriiiiz! Seni Çok Seviyorum ❤️"; 
+            
+            // 1. buton kaybolsun
+            btn1.classList.add('hide');
+        });
+
+        // 2. butona tıklandığında olacaklar:
+        btn2.addEventListener('click', () => {
+            // 1. buton büyüsün ve yazısı değişsin
+            btn1.classList.add('fullscreen');
+            btn1.innerHTML = "Sürpriiiiz! İyi ki Varsın 💕"; 
+            
+            // 2. buton kaybolsun
+            btn2.classList.add('hide');
+        });
+    </script>
+
 </body>
 </html>
